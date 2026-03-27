@@ -5,6 +5,8 @@ import MarkdownPreview from './MarkdownPreview';
 export default function UploadPage({ basePath }: { basePath: string }) {
   const [title, setTitle] = useState('');
   const [markdown, setMarkdown] = useState('');
+  const [urlInput, setUrlInput] = useState('');
+  const [fetching, setFetching] = useState(false);
   const [toast, setToast] = useState<{ msg: string; type: 'success' | 'error' } | null>(null);
 
   const showToast = useCallback((msg: string, type: 'success' | 'error' = 'success') => {
@@ -25,6 +27,29 @@ export default function UploadPage({ basePath }: { basePath: string }) {
       }
     };
     reader.readAsText(file);
+  }
+
+  async function handleFetchUrl() {
+    const url = urlInput.trim();
+    if (!url) return;
+
+    setFetching(true);
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const text = await res.text();
+      setMarkdown(text);
+      if (!title) {
+        const filename = url.split('/').pop() || '';
+        const name = filename.replace(/\.(md|mdx|txt)$/, '').replace(/[-_]/g, ' ');
+        if (name) setTitle(name.charAt(0).toUpperCase() + name.slice(1));
+      }
+      showToast('Fetched markdown from URL');
+    } catch (err: any) {
+      showToast(err.message || 'Failed to fetch URL', 'error');
+    } finally {
+      setFetching(false);
+    }
   }
 
   function handleSave() {
@@ -58,6 +83,13 @@ export default function UploadPage({ basePath }: { basePath: string }) {
 
   return (
     <>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <h1>Upload Notes</h1>
+        <button className="btn btn-primary" onClick={handleSave}>
+          Save Note
+        </button>
+      </div>
+
       <div className="upload-layout">
         <div className="upload-panel">
           <h2>Editor</h2>
@@ -74,6 +106,24 @@ export default function UploadPage({ basePath }: { basePath: string }) {
               <input type="file" accept=".md,.mdx,.txt,.markdown" onChange={handleFile} />
             </label>
           </div>
+          <div className="file-upload-row">
+            <input
+              type="text"
+              className="title-input"
+              placeholder="Or paste a URL to a .md file..."
+              value={urlInput}
+              onChange={e => setUrlInput(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleFetchUrl()}
+              style={{ flex: 1, marginBottom: 0 }}
+            />
+            <button
+              className="btn btn-secondary btn-sm"
+              onClick={handleFetchUrl}
+              disabled={fetching || !urlInput.trim()}
+            >
+              {fetching ? 'Fetching...' : 'Fetch'}
+            </button>
+          </div>
           <textarea
             className="md-editor"
             placeholder={"Paste your markdown here...\n\nSupports LaTeX: $E = mc^2$\nCode blocks: ```python\nAnd all standard markdown."}
@@ -83,9 +133,6 @@ export default function UploadPage({ basePath }: { basePath: string }) {
             spellCheck={false}
           />
           <div className="upload-actions">
-            <button className="btn btn-primary" onClick={handleSave}>
-              Save Note
-            </button>
             <a className="btn btn-secondary" href={`${basePath}/my-notes/`}>
               My Notes
             </a>
