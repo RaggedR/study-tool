@@ -17,7 +17,6 @@ import CardCreator from './CardCreator';
 export default function MyNotesPage({ basePath }: { basePath: string }) {
   const [notes, setNotes] = useState<SavedNote[]>([]);
   const [viewId, setViewId] = useState<string | null>(null);
-  const [showCreator, setShowCreator] = useState(false);
   const [toast, setToast] = useState<{ msg: string; type: 'success' | 'error' } | null>(null);
 
   useEffect(() => {
@@ -71,18 +70,12 @@ export default function MyNotesPage({ basePath }: { basePath: string }) {
       <>
         <div className="note-header">
           <div>
-            <button className="btn btn-secondary btn-sm" onClick={() => { setViewId(null); setShowCreator(false); }}>
+            <button className="btn btn-secondary btn-sm" onClick={() => setViewId(null)}>
               &larr; Back to Notes
             </button>
             <h1 style={{ marginTop: '0.5rem' }}>{currentNote.title}</h1>
           </div>
           <div className="note-header-actions">
-            <button
-              className={`btn btn-sm ${showCreator ? 'btn-primary' : 'btn-secondary'}`}
-              onClick={() => setShowCreator(!showCreator)}
-            >
-              {showCreator ? 'Hide Creator' : 'Add Flashcards & Quiz'}
-            </button>
             <button className="btn btn-secondary btn-sm" onClick={(e) => handleExport(currentNote, e)}>
               Export .mdx
             </button>
@@ -93,15 +86,13 @@ export default function MyNotesPage({ basePath }: { basePath: string }) {
           <MarkdownPreview content={currentNote.markdown} />
         </div>
 
-        {showCreator && (
-          <CardCreator
-            flashcards={currentNote.flashcards}
-            quizQuestions={currentNote.quizQuestions}
-            noteContent={currentNote.markdown}
-            onUpdateFlashcards={handleUpdateFlashcards}
-            onUpdateQuiz={handleUpdateQuiz}
-          />
-        )}
+        <CardCreator
+          flashcards={currentNote.flashcards}
+          quizQuestions={currentNote.quizQuestions}
+          noteContent={currentNote.markdown}
+          onUpdateFlashcards={handleUpdateFlashcards}
+          onUpdateQuiz={handleUpdateQuiz}
+        />
 
         {currentNote.flashcards.length > 0 && (
           <div style={{ marginTop: '2rem' }}>

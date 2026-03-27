@@ -1,0 +1,88 @@
+/* ── Sage Scholar Theme ───────────────────────
+   Warm amber accent on deep slate backgrounds.
+   Academic but modern — good for long reading sessions.
+   ─────────────────────────────────────────────── */
+
+/* Dark mode (default) */
+:root {
+  --sl-color-accent-low: #2a2115;
+  --sl-color-accent: #d4a44a;
+  --sl-color-accent-high: #f5dca0;
+
+  --sl-color-white: #f0e9df;
+  --sl-color-gray-1: #d4cdc3;
+  --sl-color-gray-2: #b0a898;
+  --sl-color-gray-3: #8a8070;
+  --sl-color-gray-4: #5e564c;
+  --sl-color-gray-5: #3a342c;
+  --sl-color-gray-6: #252019;
+  --sl-color-gray-7: #1a1610;
+  --sl-color-black: #12100b;
+
+  --sl-color-bg-nav: var(--sl-color-gray-7);
+  --sl-color-bg-sidebar: var(--sl-color-gray-7);
+  --sl-color-hairline-light: var(--sl-color-gray-5);
+  --sl-color-hairline-shade: var(--sl-color-black);
+}
+
+/* Light mode */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #faf3e4;
+  --sl-color-accent: #b8860b;
+  --sl-color-accent-high: #7a5a08;
+
+  --sl-color-white: #1a1610;
+  --sl-color-gray-1: #2e2820;
+  --sl-color-gray-2: #4a4238;
+  --sl-color-gray-3: #6e645a;
+  --sl-color-gray-4: #9a9086;
+  --sl-color-gray-5: #c8c0b4;
+  --sl-color-gray-6: #e8e2d8;
+  --sl-color-gray-7: #f5f0e8;
+  --sl-color-black: #faf7f0;
+
+  --sl-color-bg-nav: var(--sl-color-black);
+  --sl-color-bg-sidebar: var(--sl-color-black);
+}
+
+/* ── Typography refinements ─────────────────── */
+
+:root {
+  --sl-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sl-text-h1: 2rem;
+  --sl-text-h2: 1.5rem;
+}
+
+/* Subtle border-radius on Starlight's content cards */
+.card {
+  border-radius: 10px;
+}
+
+/* Give the site title a warm feel */
+.site-title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Soften sidebar links */
+nav.sidebar a {
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+nav.sidebar a:hover {
+  color: var(--sl-color-accent);
+}
+
+/* ── App-level variable bridge ────────────────
+   Maps Starlight vars to the app-* vars used
+   in components.css for flashcards, quiz, etc. */
+
+:root {
+  --app-bg: var(--sl-color-gray-7);
+  --app-bg-card: var(--sl-color-gray-6);
+  --app-text: var(--sl-color-white);
+  --app-text-muted: var(--sl-color-gray-3);
+  --app-accent: var(--sl-color-accent);
+  --app-danger: #ef4444;
+  --app-border: var(--sl-color-gray-5);
+}
