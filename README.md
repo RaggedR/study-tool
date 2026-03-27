@@ -1,8 +1,8 @@
-# Uni Notes
+# Study Tool
 
 A static website for university notes with LaTeX rendering, syntax-highlighted code, interactive flashcards, and auto-generated quizzes.
 
-**Live site:** https://raggedr.github.io/uni-notes/
+**Live site:** https://raggedr.github.io/study-tool/
 
 ## Features
 

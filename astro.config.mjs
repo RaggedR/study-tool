@@ -6,12 +6,12 @@ import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
   site: 'https://raggedr.github.io',
-  base: '/uni-notes',
+  base: '/study-tool',
   integrations: [
     starlight({
       title: 'Uni Notes',
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/RaggedR/uni-notes' },
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/RaggedR/study-tool' },
       ],
       sidebar: [
         {
