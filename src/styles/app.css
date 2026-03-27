@@ -1,51 +1,30 @@
-/* ── Sage Scholar Theme (App Pages) ─────────── */
+/* ── Sage Scholar Theme (App Pages) — Dark only ── */
 
 :root {
-  --app-bg: #faf7f0;
-  --app-surface: #f0ebe0;
-  --app-border: #c8c0b4;
-  --app-text: #1a1610;
-  --app-text-muted: #6e645a;
-  --app-accent: #b8860b;
-  --app-accent-hover: #96700a;
+  --app-bg: #12100b;
+  --app-surface: #1a1610;
+  --app-border: #3a342c;
+  --app-text: #f0e9df;
+  --app-text-muted: #8a8070;
+  --app-accent: #d4a44a;
+  --app-accent-hover: #c4943a;
   --app-success: #22c55e;
   --app-danger: #ef4444;
   --app-danger-hover: #dc2626;
-  --app-code-bg: #e8e2d8;
+  --app-code-bg: #252019;
 
   /* Map Starlight vars so components.css works on app pages too */
-  --sl-color-white: #1a1610;
-  --sl-color-black: #faf7f0;
-  --sl-color-gray-2: #2e2820;
-  --sl-color-gray-3: #6e645a;
-  --sl-color-gray-5: #c8c0b4;
-  --sl-color-gray-6: #e8e2d8;
-  --sl-color-gray-7: #f5f0e8;
-  --sl-color-accent: #b8860b;
-  --sl-color-accent-low: rgba(184, 134, 11, 0.1);
-}
+  --sl-color-white: #f0e9df;
+  --sl-color-black: #12100b;
+  --sl-color-gray-2: #d4cdc3;
+  --sl-color-gray-3: #8a8070;
+  --sl-color-gray-5: #3a342c;
+  --sl-color-gray-6: #252019;
+  --sl-color-gray-7: #1a1610;
+  --sl-color-accent: #d4a44a;
+  --sl-color-accent-low: rgba(212, 164, 74, 0.1);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --app-bg: #12100b;
-    --app-surface: #1a1610;
-    --app-border: #3a342c;
-    --app-text: #f0e9df;
-    --app-text-muted: #8a8070;
-    --app-accent: #d4a44a;
-    --app-accent-hover: #c4943a;
-    --app-code-bg: #252019;
-
-    --sl-color-white: #f0e9df;
-    --sl-color-black: #12100b;
-    --sl-color-gray-2: #d4cdc3;
-    --sl-color-gray-3: #8a8070;
-    --sl-color-gray-5: #3a342c;
-    --sl-color-gray-6: #252019;
-    --sl-color-gray-7: #1a1610;
-    --sl-color-accent: #d4a44a;
-    --sl-color-accent-low: rgba(212, 164, 74, 0.1);
-  }
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

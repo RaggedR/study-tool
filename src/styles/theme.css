@@ -1,10 +1,11 @@
 /* ── Sage Scholar Theme ───────────────────────
    Warm amber accent on deep slate backgrounds.
-   Academic but modern — good for long reading sessions.
+   Dark mode only.
    ─────────────────────────────────────────────── */
 
-/* Dark mode (default) */
-:root {
+:root,
+:root[data-theme='light'],
+:root[data-theme='dark'] {
   --sl-color-accent-low: #2a2115;
   --sl-color-accent: #d4a44a;
   --sl-color-accent-high: #f5dca0;
@@ -23,26 +24,20 @@
   --sl-color-bg-sidebar: var(--sl-color-gray-7);
   --sl-color-hairline-light: var(--sl-color-gray-5);
   --sl-color-hairline-shade: var(--sl-color-black);
+
+  color-scheme: dark;
 }
 
-/* Light mode */
-:root[data-theme='light'] {
-  --sl-color-accent-low: #faf3e4;
-  --sl-color-accent: #b8860b;
-  --sl-color-accent-high: #7a5a08;
+/* Hide the theme picker */
+starlight-theme-select,
+[data-select-theme] {
+  display: none !important;
+}
 
-  --sl-color-white: #1a1610;
-  --sl-color-gray-1: #2e2820;
-  --sl-color-gray-2: #4a4238;
-  --sl-color-gray-3: #6e645a;
-  --sl-color-gray-4: #9a9086;
-  --sl-color-gray-5: #c8c0b4;
-  --sl-color-gray-6: #e8e2d8;
-  --sl-color-gray-7: #f5f0e8;
-  --sl-color-black: #faf7f0;
+/* ── Wider content area ─────────────────────── */
 
-  --sl-color-bg-nav: var(--sl-color-black);
-  --sl-color-bg-sidebar: var(--sl-color-black);
+:root {
+  --sl-content-width: 65rem;
 }
 
 /* ── Typography refinements ─────────────────── */
